@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'home.css' %}">
+{% endblock %}
+
+{% block body %}
+<div class="content">
+    <div class="devices-cards">
+        {% if request.user.is_authenticated %}
+            {% for room in rooms %}
+                <div class="cards">
+                    <p>{{room.name}}</p>
+                    <button>{{room.status}}</button>
+                </div>
+            {% endfor %}
+        {% else %}
+        <div class="cards">
+            <p>Você não está logado.</p>
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
