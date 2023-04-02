@@ -16,10 +16,10 @@
 </head>
 <body>
     <nav>
-        <a href="">Automação Residencial</a>
+        <a href="{% url 'home' %}">Automação Residencial</a>
         <div class="login-buttons">
-            <a href="">Entrar</a>
-            <a href="">Criar Conta</a>
+            <a href="{% url 'login' %}">Entrar</a>
+            <a href="{% url 'register' %}">Criar Conta</a>
         </div>
     </nav>
     {% block body %}

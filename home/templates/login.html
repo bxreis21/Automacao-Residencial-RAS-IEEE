@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+<div class="content">
+    <div class="cards">
+        <form action="{% url 'login' %}">
+            <div class="login">
+                <div>
+                    <label>Usuário</label>
+                    <input type="text">
+                </div>
+                <div>
+                    <label>Senha</label>
+                    <input type="password">
+                </div>
+                <button type="submit">Entrar</button>
+                <a href="{% url 'register' %}">Não possui uma conta? Registre-se</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+<div class="content">
+    <div id="register" class="cards">
+        <form action="{% url 'login' %}">
+            <div class="login">
+                <div>
+                    <label>Nome</label>
+                    <input type="text">
+                </div>
+                <div>
+                    <label>Sobrenome</label>
+                    <input type="text">
+                </div>
+                <div>
+                    <label>Usuário</label>
+                    <input type="text">
+                </div>
+                <div>
+                    <label>Email</label>
+                    <input type="email">
+                </div>
+                <div>
+                    <label>Senha</label>
+                    <input type="password">
+                </div>
+                <div>
+                    <label>Confirmação de senha</label>
+                    <input type="password">
+                </div>
+                <button type="submit">Criar conta</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock %}
