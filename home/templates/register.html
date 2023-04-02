@@ -4,31 +4,32 @@
 
 <div class="content">
     <div id="register" class="cards">
-        <form action="{% url 'login' %}">
+        <form action="{% url 'register' %}" method="POST">
+            {% csrf_token %}
             <div class="login">
                 <div>
                     <label>Nome</label>
-                    <input type="text">
+                    <input type="text" name="name">
                 </div>
                 <div>
                     <label>Sobrenome</label>
-                    <input type="text">
+                    <input type="text" name="lastname">
                 </div>
                 <div>
                     <label>Usuário</label>
-                    <input type="text">
+                    <input type="text" name="username">
                 </div>
                 <div>
                     <label>Email</label>
-                    <input type="email">
+                    <input type="email" name="email">
                 </div>
                 <div>
                     <label>Senha</label>
-                    <input type="password">
+                    <input type="password" name="password">
                 </div>
                 <div>
                     <label>Confirmação de senha</label>
-                    <input type="password">
+                    <input type="password" name="password2">
                 </div>
                 <button type="submit">Criar conta</button>
             </div>
