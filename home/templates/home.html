@@ -1,22 +1,41 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load custom_tags %}
+
+{% block head %}
+<script src="{% static 'base.js' %}"></script>
+{% endblock %}
 
 {% block body %}
 <div class="content">
-    <div class="devices-cards">
         {% if request.user.is_authenticated %}
+        <form action="{% url 'home' %}" method="POST">
+            <div class="room-cards">
+            {% csrf_token %}
             {% for room in rooms %}
                 <div class="cards">
                     <p>{{room.name}}</p>
-                    <button>{{room.status}}</button>
+                    <div class="device-cards">
+                        {% for device in devices %}
+                            {% if device.room == room %}
+                            <div id="device-card" class="cards">
+                                <p>{{device.name}}</p>
+                                <button type="submit" name="device" id="button-{{device.status|color_status}}"  value="{{device.id}}">{{device.status|string_status}}</button>
+                            </div>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                    <span>Status do Cômodo: <button type="submit" id="button-{{room.status|color_status}}" name="room" value="{{room.id}}">{{room.status|string_status}}</button></span>
                 </div>
             {% endfor %}
+        </div>
+        </form>
         {% else %}
-                <div class="cards">
-                    
-                    
-
-                </div>
+        <div class="room-cards">
+            <div class="cards">
+                Faça login!
+            </div>
+        </div>
         {% endif %}
     </div>
 </div>

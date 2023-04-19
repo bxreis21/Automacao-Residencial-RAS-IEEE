@@ -53,7 +53,22 @@ footer {
     align-items: center;
 }
 
-.devices-cards {
+.content form {
+    width: 80%;
+}
+
+.room-cards {
+    width: 100%; 
+    margin: 30px 0px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.device-cards {
     width: 80%; 
     margin: 30px 0px;
     display: flex;
@@ -87,7 +102,8 @@ footer {
 
 .cards button {
     background-color: #3cff00;
-    font-size: 0.8em;
+    font-size: 0.7em;
+    margin: 15px;
     padding: 15px;
     border: solid transparent;
     border-radius: 5px;
@@ -96,6 +112,18 @@ footer {
 
 .cards button:hover {
     cursor: pointer;
+}
+
+#button-green{
+    background-color: #00ff00;
+}
+
+#button-red{
+    background-color: #ff0000;
+}
+
+#device-card {
+    background-color: #181818cc;
 }
 
 /* LOGIN.HTML */
