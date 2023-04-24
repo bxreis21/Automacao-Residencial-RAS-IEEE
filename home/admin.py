@@ -7,7 +7,7 @@ class RoomAdmin(admin.ModelAdmin):
     list_editable = ['name', 'status']
 
 class DeviceAdmin(admin.ModelAdmin):
-    list_display = ['room', 'name', 'status', 'pwm']
+    list_display = ['id','room', 'name', 'status', 'pwm']
     list_display_links = ['room']
     list_editable = ['name', 'status', 'pwm']
 

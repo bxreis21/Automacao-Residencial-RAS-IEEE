@@ -3,6 +3,9 @@ from django.core.validators import validate_email
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from .models import Room, Device
+from django.http import JsonResponse
+from django.core import serializers
+from rest_framework.decorators import api_view
 
 def home(request):
     if request.user.is_authenticated:
@@ -88,3 +91,9 @@ def register_view(request):
 
     user.save()
     return redirect('home')
+
+@api_view(['GET'])
+def api_devices(request): 
+    data = Device.objects.all()
+    serialized_data = serializers.serialize('json', data)
+    return JsonResponse(serialized_data, safe=False)
