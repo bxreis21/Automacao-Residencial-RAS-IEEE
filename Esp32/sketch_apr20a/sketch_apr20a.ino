@@ -2,8 +2,8 @@
 #include <HTTPClient.h>
 #include <ArduinoJson.h>
 
-const char* ssid = "Nibos_Ana Xavier _2.4G";
-const char* password = "17231976";
+const char* ssid = "wifi";
+const char* password = "senha";
 
 int sala_luz_pk = 1 ;
 int sala_ar_pk = 2 ;
