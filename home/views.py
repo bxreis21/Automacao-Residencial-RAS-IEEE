@@ -2,32 +2,35 @@ from django.shortcuts import render,redirect
 from django.core.validators import validate_email
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
 from .models import Room, Device
 from django.http import JsonResponse
 from django.core import serializers
 from rest_framework.decorators import api_view
 
 def home(request):
-    if request.user.is_authenticated:
-        rooms = Room.objects.filter(user=request.user)
-        devices = Device.objects.all()
-
-        if request.method == 'POST':
-            room = request.POST.get('room')
-            device = request.POST.get('device')
-
-            if room is not None:
-                room_changed = Room.objects.get(id=room)
-                room_changed.status = False if room_changed.status else True
-                room_changed.save()
-
-            if device is not None:
-                device_changed = Device.objects.get(id=device)
-                device_changed.status = False if device_changed.status else True
-                device_changed.save()
-
-        return render(request, 'home.html', {'rooms': rooms, 'devices': devices})
     return render(request, 'home.html')
+
+@login_required(login_url='login')
+def devices(request):
+    rooms = Room.objects.filter(user=request.user)
+    devices = Device.objects.all()
+
+    if request.method == 'POST':
+        room = request.POST.get('room')
+        device = request.POST.get('device')
+
+        if room is not None:
+            room_changed = Room.objects.get(id=room)
+            room_changed.status = False if room_changed.status else True
+            room_changed.save()
+
+        if device is not None:
+            device_changed = Device.objects.get(id=device)
+            device_changed.status = False if device_changed.status else True
+            device_changed.save()
+
+    return render(request, 'devices.html', {'rooms': rooms, 'devices': devices})
 
 def login_view(request):
     if request.method != 'POST':

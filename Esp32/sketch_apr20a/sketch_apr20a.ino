@@ -2,8 +2,8 @@
 #include <HTTPClient.h>
 #include <ArduinoJson.h>
 
-const char* ssid = "Nome_da_Rede";
-const char* password = "Senha_da_Rede";
+const char* ssid = "Nibos_Ana Xavier _2.4G";
+const char* password = "17231976";
 
 int sala_luz_pk = 1 ;
 int sala_ar_pk = 2 ;
@@ -32,7 +32,7 @@ void setup() {
 void loop() {
 
   HTTPClient http;
-  http.begin("link_da_API");
+  http.begin("http://192.168.1.4:8000/api_devices");
   int httpCode = http.GET();
 
   if (httpCode == HTTP_CODE_OK) {

@@ -1,40 +1,74 @@
-{% extends 'base.html' %}
+{% load static %}
+{% load custom_tags %}
 
-{% block body %}
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'home.css' %}">
+    <link rel="stylesheet" href="{% static 'login.css' %}">
+</head>
 
-<div class="content">
-    <div id="register" class="cards">
-        <form action="{% url 'register' %}" method="POST">
-            {% csrf_token %}
-            <div class="login">
-                <div>
+
+<body>
+    <nav>
+        <div class="ras_logo">
+            <a href="{% url 'home' %}"><img src="{% static 'RAS_logo.png' %}" alt="logo_RAS"></a>
+        </div>
+        <div class="nav_title">
+            <h1>Projeto Automação Residencial</h1>
+        </div>
+        {% if not request.user.is_authenticated %}
+        <div class="login_button" >
+            <a href="{% url 'login' %}"><button>Login</button></a>
+        </div>
+        {% endif %}
+    </nav>
+
+    <div class="content">
+        <div class="card" id="register-card">
+            <form action="{% url 'register' %}" method="POST">
+                    {% csrf_token %}
+                <div class="login_label">
                     <label>Nome</label>
-                    <input type="text" name="name">
                 </div>
-                <div>
+                <input type="text" name="name" id="register-input">
+                
+                <div class="login_label">
                     <label>Sobrenome</label>
-                    <input type="text" name="lastname">
                 </div>
-                <div>
-                    <label>Usuário</label>
-                    <input type="text" name="username">
-                </div>
-                <div>
-                    <label>Email</label>
-                    <input type="email" name="email">
-                </div>
-                <div>
-                    <label>Senha</label>
-                    <input type="password" name="password">
-                </div>
-                <div>
-                    <label>Confirmação de senha</label>
-                    <input type="password" name="password2">
-                </div>
-                <button type="submit">Criar conta</button>
-            </div>
-        </form>
-    </div>
-</div>
+                <input type="text" name="lastname" id="register-input">
 
-{% endblock %}
+                <div class="login_label">
+                    <label>Usuário</label>
+                </div>
+                <input type="text" name="username" id="register-input">
+
+                <div class="login_label">
+                    <label>Email</label>
+                </div>
+                <input type="email" name="email" id="register-input">
+
+                <div class="login_label">
+                    <label>Senha</label>
+                </div>
+                <input type="password" name="password" id="register-input">
+
+                <div class="login_label">
+                    <label>Confirmação de senha</label>
+                </div>
+                <input type="password" name="password2" id="register-input">
+                <button type="submit">Criar conta</button>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        <a href=""><img src="{% static 'linkedin.png' %}" alt=""></a>
+        <a href=""><img src="{% static 'instagram.png' %}" alt=""></a>
+        <a href=""><img src="{% static 'facebook.png' %}" alt=""></a>
+    </footer>
+</body>

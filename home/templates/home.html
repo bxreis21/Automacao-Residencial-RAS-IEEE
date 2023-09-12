@@ -1,42 +1,62 @@
-{% extends 'base.html' %}
 {% load static %}
 {% load custom_tags %}
 
-{% block head %}
-<script src="{% static 'base.js' %}"></script>
-{% endblock %}
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'home.css' %}">
+    <script src="{% static 'home.js' %}"></script>
+    </style>
 
-{% block body %}
-<div class="content">
-        {% if request.user.is_authenticated %}
-        <form action="{% url 'home' %}" method="POST">
-            <div class="room-cards">
-            {% csrf_token %}
-            {% for room in rooms %}
-                <div class="cards">
-                    <p>{{room.name}}</p>
-                    <div class="device-cards">
-                        {% for device in devices %}
-                            {% if device.room == room %}
-                            <div id="device-card" class="cards">
-                                <p>{{device.name}}</p>
-                                <button type="submit" name="device" id="button-{{device.status|color_status}}"  value="{{device.id}}">{{device.status|string_status}}</button>
-                            </div>
-                            {% endif %}
-                        {% endfor %}
-                    </div>
-                    <span>Status do Cômodo: <button type="submit" id="button-{{room.status|color_status}}" name="room" value="{{room.id}}">{{room.status|string_status}}</button></span>
-                </div>
-            {% endfor %}
+</head>
+
+<body id="fundo">
+    <nav>
+        <div class="ras_logo">
+            <a href="{% url 'home' %}"><img src="{% static 'RAS_logo.png' %}" alt="logo_RAS"></a>
         </div>
-        </form>
+        <div class="nav_title">
+            <h1>Projeto Automação Residencial</h1>
+        </div>
+        {% if not request.user.is_authenticated %}
+        <div class="login_button">
+            <a href="{% url 'login' %}"><button>Login</button></a>
+        </div>
         {% else %}
-        <div class="room-cards">
-            <div class="cards">
-                Faça login!
-            </div>
+        <div class="login_button">
+            <a href="{% url 'devices' %}"><button>Devices</button></a>
         </div>
         {% endif %}
+    </nav>
+
+    <div class="info_cards">
+        <div class="info_box">
+            <h2>Sobre</h2>
+            <p>
+                O projeto tem o objetivo inicial de facilitar e tornar automáticas algumas tarefas habituais que em uma casa convencional ficaria a cargo de seus moradores.
+                Pretendemos expandir tais tecnologias e conceitos aplicados para projetos tais como carros inteligentes, manufatura, smarts grids, etc.
+                Com isso, temos o objetivo geral de controlar, monitorar e otimizar processos garantindo mais comodidade, economia e, consequentemente, qualidade de vida.
+            </p>
+        </div>
+        <div class="info_box">
+            <h2>Quem somos?</h2>
+            <p>
+                Voluntários do Ramo Estudantil IEEE UERJ, membros do capítulo RAS (Robotics and Automation Society).
+            </p>
+        </div>
+        <div class="logo_ras_ieee">
+            <img src="{% static 'Ramo_logo.png' %}" alt="">
+            <img src="{% static 'ras_logo_color.png' %}" alt="">
+        </div>
     </div>
-</div>
-{% endblock %}
+    
+    <footer>
+        <a href=""><img src="{% static 'linkedin.png' %}" alt=""></a>
+        <a href=""><img src="{% static 'instagram.png' %}" alt=""></a>
+        <a href=""><img src="{% static 'facebook.png' %}" alt=""></a>
+    </footer>
+</body>
